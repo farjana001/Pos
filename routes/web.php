@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserGroupsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +19,14 @@ Route::get('/', function () {
     return view('layouts.main-layout');
 });
 
-Route::get('users', function () {
-    return view('users.users');
-});
+// Route::get('users', function () {
+//     return view('users.users');
+// });
 
-Route::get('groups', function () {
-    return view('groups.groups');
-});
+Route::get('users', [UsersController::class, 'index']);
+Route::get('groups', [UserGroupsController::class, 'index']);
+Route::get('create-group', [UserGroupsController::class, 'create'])->name('create.user.group');
+Route::post('create-group', [UserGroupsController::class, 'store'])->name('store.user.group');
+
 
 

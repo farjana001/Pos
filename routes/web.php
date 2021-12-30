@@ -24,9 +24,10 @@ Route::get('/', function () {
 // });
 
 Route::get('users', [UsersController::class, 'index']);
-Route::get('groups', [UserGroupsController::class, 'index']);
+Route::get('groups', [UserGroupsController::class, 'index'])->name('index.user.group');
 Route::get('create-group', [UserGroupsController::class, 'create'])->name('create.user.group');
 Route::post('create-group', [UserGroupsController::class, 'store'])->name('store.user.group');
+Route::get('create-group/delete/{id}', [UserGroupsController::class, 'destroy'])->name('destroy.user.group');
 
 
 

@@ -40,16 +40,16 @@
                             @endif
                         </td>
                         <td class="text-right pr-4">
-                            <button class="btn btn-info"><i class="far fa-edit"></i></button>
-                                {{-- <a href="{{ route('destroy.user.group', $group->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a> --}}
-                                <button
+                            <a href="{{ route('edit.user.group', $group->id) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
+                                <a href="{{ route('destroy.user.group', $group->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                {{-- <button
                                 class="btn btn-danger delete-group-modal"
                                 data-toggle="modal"
                                 data-target="#deleteUserGroupModal"
                                 data-id="{{ $group->id }}"
                                 >
                                 <i class="far fa-trash-alt"></i>
-                                </button>
+                                </button> --}}
                         </td>
                     </tr>
                        @endforeach
@@ -57,7 +57,7 @@
                 </table>
             </div>
             {{-- delete modal --}}
-            <div class="modal fade" id="deleteUserGroupModal" tabindex="-1" role="dialog"
+            {{-- <div class="modal fade" id="deleteUserGroupModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

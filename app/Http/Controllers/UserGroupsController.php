@@ -24,10 +24,27 @@ class UserGroupsController extends Controller
         ]);
         $formData = $request->all();
 
-        if (Group::create($formData)) {
-        }
+        Group::create($formData);
 
         return redirect()->route('index.user.group')->with('message', 'New user group created successfully');
+    }
+
+    public function edit($id) {
+        $groups = Group::findOrFail($id);
+        return view('groups.edit-group', compact('groups'));
+    }
+    public function update(Request $request, $id) {
+        $groups = Group::findOrFail($id);
+        $request->validate([
+            'title' => 'required',
+            'status' => 'required',
+        ]);
+
+        $groups->title = $request->title;
+        $groups->status = $request->status;
+
+        $groups->save();
+        return redirect()->route('index.user.group')->with('message', 'New user group updated successfully');
     }
 
 

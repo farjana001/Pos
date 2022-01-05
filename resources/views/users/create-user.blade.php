@@ -15,6 +15,18 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label style="color: black;" for="group_id">Select Group:</label>
+                <select class="form-control" name="group_id" id="group">
+                    <option value="">Select group</option>
+                    @foreach ($groups as $group)
+                        <option value="{{ $group->id }}">{{ $group->title }}</option>
+                    @endforeach
+                </select>
+                @error('group_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label style="color: black;" for="name">Email:</label>
                 <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Enter email address">
             </div>
@@ -25,7 +37,7 @@
 
             <div class="form-group">
                 <label style="color: black;" for="name">Address:</label>
-                <textarea type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" rows="6" placeholder="Enter address"></textarea>
+                <textarea type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" rows="3" placeholder="Enter address"></textarea>
             </div>
 
 

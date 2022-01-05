@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create-user');
+        $groups = Group::all();
+        return view('users.create-user', compact('groups'));
     }
 
     /**
@@ -39,10 +41,18 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'group_id' => 'required',
             'email' => 'nullable',
             'phone' => 'nullable',
             'address' => 'nullable',
         ]);
+
+        $formData = $request->all();
+
+        User::create($formData);
+
+        return redirect()->route('users.index')->with('message', 'User created successfully');
+
     }
 
     /**

@@ -23,6 +23,7 @@
                         <tr>
                             <th>Sl No.</th>
                             <th class="text-center">Name</th>
+                            <th class="text-center">Group</th>
                             <th class="text-center">Email</th>
                             <th class="text-center pr-5">Phone</th>
                             <th class="text-center pr-5">Address</th>
@@ -34,6 +35,7 @@
                        <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td class="text-center">{{ $user->name }}</td>
+                        <td class="text-center">{{ $user->groups }}</td>
                         <td class="text-center">{{ $user->email }}</td>
                         <td class="text-center">{{ $user->phone }}</td>
                         <td class="text-center">{{ $user->address }}</td>

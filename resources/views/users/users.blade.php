@@ -31,11 +31,12 @@
                         </tr>
                     </thead>
                     <tbody>
+
                        @foreach ($users as $user)
                        <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td class="text-center">{{ $user->name }}</td>
-                        <td class="text-center">{{ $user->groups }}</td>
+                        <td class="text-center">{{ $user->group->title }}</td>
                         <td class="text-center">{{ $user->email }}</td>
                         <td class="text-center">{{ $user->phone }}</td>
                         <td class="text-center">{{ $user->address }}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id', 'desc')->get();
 
         return view('users.users', compact('users'));
     }
@@ -37,15 +38,8 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'group_id' => 'required',
-            'email' => 'nullable',
-            'phone' => 'nullable',
-            'address' => 'nullable',
-        ]);
 
         $formData = $request->all();
 
@@ -74,7 +68,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::findOrFail($id);
+        $groups = Group::all();
+        return view('users.edit-user', compact('users', 'groups'));
     }
 
     /**
@@ -86,7 +82,24 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'group_id' => 'required',
+            'name' => 'required|string',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
+        ]);
+
+        $user->name         = $request->name;
+        $user->group_id     = $request->group_id;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->address      = $request->address;
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('message', 'User updated successfully');
     }
 
     /**
@@ -97,6 +110,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect()->route('users.index')->with('message', 'User removed successfully');
+
     }
 }

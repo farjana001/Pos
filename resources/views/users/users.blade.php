@@ -41,6 +41,7 @@
                         <td class="text-center">{{ $user->phone }}</td>
                         <td class="text-center">{{ $user->address }}</td>
                         <td class="text-right pr-4">
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
                             <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                 {{-- <button

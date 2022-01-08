@@ -29,6 +29,7 @@ Route::post('group/update/{id}', [UserGroupsController::class, 'update'])->name(
 Route::get('group/delete/{id}', [UserGroupsController::class, 'destroy'])->name('destroy.user.group');
 
 Route::get('users', [UsersController::class, 'index'])->name('users.index');
+Route::get('users/show/{id}', [UsersController::class, 'show'])->name('users.show');
 Route::get('users/create', [UsersController::class, 'create'])->name('users.create');
 Route::post('users/store', [UsersController::class, 'store'])->name('users.store');
 Route::get('users/edit/{id}', [UsersController::class, 'edit'])->name('users.edit');

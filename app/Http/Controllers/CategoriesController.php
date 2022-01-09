@@ -10,7 +10,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::orderBy('id', 'desc')->get();
-// dd($categories);
+
         return view('Categories.categories', compact('categories'));
     }
 

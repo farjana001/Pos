@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\UserGroupsController;
 use App\Http\Controllers\UsersController;
@@ -45,5 +46,13 @@ Route::post('categories/store', [CategoriesController::class, 'store'])->name('c
 Route::get('categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
 Route::post('categories/update/{id}', [CategoriesController::class, 'update'])->name('categories.update');
 Route::get('categories/delete/{id}', [CategoriesController::class, 'destroy'])->name('categories.delete');
+
+// Products routes
+Route::get('products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('products/create', [ProductsController::class, 'create'])->name('products.create');
+Route::post('products/store', [ProductsController::class, 'store'])->name('products.store');
+Route::get('products/edit/{id}', [ProductsController::class, 'edit'])->name('products.edit');
+Route::post('products/update/{id}', [ProductsController::class, 'update'])->name('products.update');
+Route::get('products/delete/{id}', [ProductsController::class, 'destroy'])->name('products.delete');
 
 

@@ -16,7 +16,7 @@
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <div><span style="font-size: 30px;" class="text-primary mr-2"><i class="fas fa-user-circle"></i></span></div>
-                <h6 class="m-0 font-weight-bold text-primary text-capitalize">{{ $users->name }}</h6>
+                <h4 class="m-0 font-weight-bold text-primary text-capitalize">{{ $users->name }}</h4>
             </div>
         </div>
         <div class="card-body py-5">
@@ -24,28 +24,28 @@
                 <div class="col-xl-offset-3 col-lg-offset-1 col-md-offset-0"></div>
                 <div class="col-xl-6 col-lg-10 col-md-8">
                     <div style="" class="p-3 rounded user-card d-flex justify-content-center">
-                        <div class="">
-                            <table class="table table-responsive table-borderless">
+                        <div class="w-100">
+                            <table class="table table-striped">
                                 <tbody>
                                     <tr>
-                                        <th>Group:</th>
-                                        <td class="text-capitalize">{{ $users->group->title }}</td>
+                                        <th class="text-dark">Group:</th>
+                                        <td class="text-capitalize text-dark">{{ $users->group->title }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Name:</th>
-                                        <td class="text-capitalize">{{ $users->name }}</td>
+                                        <th class="text-dark">Name:</th>
+                                        <td class="text-capitalize text-dark">{{ $users->name }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Email:</th>
-                                        <td>{{ $users->email }}</td>
+                                        <th class="text-dark">Email:</th>
+                                        <td class="text-dark">{{ $users->email }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Phone:</th>
-                                        <td>{{ $users->phone }}</td>
+                                        <th class="text-dark">Phone:</th>
+                                        <td class="text-dark">{{ $users->phone }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Address:</th>
-                                        <td>{{ $users->address }}</td>
+                                        <th class="text-dark">Address:</th>
+                                        <td class="text-dark">{{ $users->address }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -18,41 +18,50 @@
             </div>
             @endif
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-basic" id="dataTable">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 15%;">
+                        <col style="width: 15%;">
+                        <col style="width: 20%;">
+                        <col style="width: 15%;">
+                        <col style="width: 15%;">
+                    </colgroup>
                     <thead>
                         <tr>
                             <th>Sl No.</th>
                             <th class="text-center">Title</th>
-                            <th class="text-center">Status</th>
+                            <th class="text-center">Category</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Cost Price</th>
+                            <th class="text-center">Price</th>
                             <th class="text-right pr-5">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                       {{-- @foreach ($groups as $group)
+                       @foreach ($products as $product)
                        <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td class="text-center">{{ $group->title }}</td>
-                        <td class="text-center">
-                            @if ($group->status === 1)
-                            <span class="text-success">Active</span>
-                            @elseif ($group->status === 2)
-                            <span class="text-danger">Inactive</span>
-                            @endif
-                        </td>
+                        <td class="text-center">{{ $product->title }}</td>
+                        <td class="text-center">{{ $product->category->title }}</td>
+                        <td class="text-center">{{ $product->description }}</td>
+                        <td class="text-center">${{ $product->cost_price }}</td>
+                        <td class="text-center">${{ $product->price }}</td>
                         <td class="text-right pr-4">
-                            <a href="{{ route('edit.user.group', $group->id) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
-                                <a href="{{ route('destroy.user.group', $group->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-                                <button
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
+                            <a href="{{ route('products.delete', $product->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                {{-- <button
                                 class="btn btn-danger delete-group-modal"
                                 data-toggle="modal"
                                 data-target="#deleteUserGroupModal"
-                                data-id="{{ $group->id }}"
+                                data-id="{{ $product->id }}"
                                 >
                                 <i class="far fa-trash-alt"></i>
-                                </button>
+                                </button> --}}
                         </td>
                     </tr>
-                       @endforeach --}}
+                       @endforeach
                     </tbody>
                 </table>
             </div>
@@ -68,7 +77,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <a href="{{ route('destroy.user.group', $group->id) }}" type="submit" id="deleteGroupModalHref" class="btn btn-danger">Delete it.</a>
+                            <a href="{{ route('destroy.user.group', $product->id) }}" type="submit" id="deleteGroupModalHref" class="btn btn-danger">Delete it.</a>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
                     <option value="">Select group</option>
                     @foreach($groups as $group)
                     <option value="{{ $group->id }}" @if($users->group_id === $group->id) selected='selected' @endif> {{ $group->title }}</option>
-                @endforeach
+                    @endforeach
                 </select>
                 @error('group_id')
                     <div class="text-danger">{{ $message }}</div>

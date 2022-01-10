@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,26 +15,43 @@ class productsController extends Controller
         return view('products.products', compact('products'));
     }
 
+    public function show($id)
+    {
+        $products = Product::findOrFail($id);
+
+        return view('products.show-products', compact('products'));
+    }
+
     public function create()
     {
-        return view('products.create-products');
+        $categories = Category::all();
+        return view('products.create-product', compact('categories'));
     }
 
     public function edit($id)
     {
         $products = Product::findOrFail($id);
-        return view('products.edit-products', compact('products'));
+        $categories = Category::all();
+        return view('products.edit-product', compact('products', 'categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'category_id' => 'required',
+            'description' => 'nullable',
+            'cost_price' => 'numeric',
+            'price' => 'numeric',
         ]);
 
         $products = new Product();
 
         $products->title = $request->title;
+        $products->category_id = $request->category_id;
+        $products->description = $request->description;
+        $products->cost_price= $request->cost_price;
+        $products->price= $request->price;
 
         $products->save();
 
@@ -43,12 +61,20 @@ class productsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'category_id' => 'required',
+            'description' => 'nullable',
+            'cost_price' => 'nullable',
+            'price' => 'nullable',
         ]);
 
         $products = Product::findOrFail($id);
 
         $products->title = $request->title;
+        $products->category_id = $request->category_id;
+        $products->description = $request->description;
+        $products->cost_price= $request->cost_price;
+        $products->price= $request->price;
 
         $products->save();
 

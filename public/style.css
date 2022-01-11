@@ -7,3 +7,10 @@
     background-color: #f7fbfc;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+.bg-custom-login-image {
+    background-image: url('https://cdn.pixabay.com/photo/2019/12/16/10/30/iphone-4699057_960_720.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}

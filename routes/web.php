@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\UserGroupsController;
@@ -21,6 +22,9 @@ Route::get('/', function () {
     return view('layouts.main-layout');
 });
 
+// Auth routes
+Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::get('login/confirm', [LoginController::class, 'confirmLogin'])->name('login.confirm');
 
 // Group Routes
 Route::get('groups', [UserGroupsController::class, 'index'])->name('index.user.group');

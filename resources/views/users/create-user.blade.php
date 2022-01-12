@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label style="color: black;" for="phone">Phone:<span class="text-danger">*</span></label>
-                <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phpne') }}" placeholder="Enter phone number">
+                <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="Enter phone number">
                 @error('phone')
                 <div class="text-danger">{{ $message }}</div>
             @enderror

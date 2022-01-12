@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 // Auth routes
 Route::get('login', [LoginController::class, 'login'])->name('login');
-Route::get('login/confirm', [LoginController::class, 'confirmLogin'])->name('login.confirm');
+Route::get('login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
 // Group Routes
 Route::get('groups', [UserGroupsController::class, 'index'])->name('index.user.group');

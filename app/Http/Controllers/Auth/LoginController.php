@@ -12,7 +12,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function confirmLogin(LoginRequest $request)
+    public function authenticate(LoginRequest $request)
     {
         return $formData = $request->all();
     }

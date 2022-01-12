@@ -35,7 +35,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label style="color: black;" for="price">Price:</label>
+                <label style="color: black;" for="price">Sell Price:</label>
                 <input type="text" id="price" name="price" class="form-control" value="{{ old('phpne') }}" placeholder="Enter price">
                 @error('price')
                 <div class="text-danger">{{ $message }}</div>

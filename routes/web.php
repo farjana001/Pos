@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.main-layout');
+Route::get('dashboard', function () {
+    return view('welcome');
 });
 
 // Auth routes

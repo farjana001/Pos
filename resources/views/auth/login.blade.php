@@ -25,7 +25,8 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <form action="{{ route('login.authenticate') }}" enctype="multipart/form-data" class="user">
+                                <form action="{{ route('login.authenticate') }}" enctype="multipart/form-data" class="user" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control form-control-user"
                                             id="exampleInputEmail" aria-describedby="emailHelp"

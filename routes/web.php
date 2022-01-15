@@ -1,8 +1,7 @@
 <?php
-
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserGroupsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -18,14 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Auth routes
+// Route::get('login', function () {
+//     return view('auth.login');
+// });
+Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::post('login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+
 Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', function () {
         return view('welcome');
     });
 
-    // Auth routes
-    Route::get('login', [LoginController::class, 'login'])->name('login');
-    Route::get('login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+    Route::get('logout', [LoginController::class, 'logOut'])->name('logout');
 
     // Group Routes
     Route::get('groups', [UserGroupsController::class, 'index'])->name('index.user.group');

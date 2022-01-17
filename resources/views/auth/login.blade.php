@@ -21,6 +21,13 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    @if(session()->has('fail'))
+                                    <div class="col-12">
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session()->get('fail') }}
+                                    </div>
+                                    </div>
+                                    @endif
                                     @error('message')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

@@ -35,10 +35,9 @@ Route::post('login/authenticate', [LoginController::class, 'authenticate'])->nam
 Route::get('registration', [RegistrationController::class, 'registration'])->name('registration');
 Route::post('register/user', [RegistrationController::class, 'registerUser'])->name('register.user');
 
-
 Route::group(['middleware' => 'auth'], function(){
-
-Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get('logout', [LoginController::class, 'logOut'])->name('logout');
 

@@ -28,7 +28,7 @@ class RegistrationController extends Controller
 
         $user->save();
 
-        return redirect()->route('dashboard')->with('message', 'You have registered successfully');
+        return redirect()->route('login')->with('message', 'You have registered successfully');
     }
 
 

@@ -43,7 +43,7 @@ class LoginController extends Controller
 
         $user = Admin::where('email','=',$request->email)->first();
 
-        if ($user) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginId', $user->id);
                 return redirect()->route('dashboard')->with('message', 'You have successfully logged in to the dashboard');
@@ -65,7 +65,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('dashboard');
+        return redirect('login');
     }
 
 }

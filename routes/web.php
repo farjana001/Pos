@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserGroupsController;
+use App\Http\Controllers\UserSalesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +37,7 @@ Route::get('registration', [RegistrationController::class, 'registration'])->nam
 Route::post('register/user', [RegistrationController::class, 'registerUser'])->name('register.user');
 
 Route::group(['middleware' => 'auth'], function(){
-    
+
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get('logout', [LoginController::class, 'logOut'])->name('logout');
@@ -74,6 +75,16 @@ Route::post('products/store', [ProductsController::class, 'store'])->name('produ
 Route::get('products/edit/{id}', [ProductsController::class, 'edit'])->name('products.edit');
 Route::post('products/update/{id}', [ProductsController::class, 'update'])->name('products.update');
 Route::get('products/delete/{id}', [ProductsController::class, 'destroy'])->name('products.delete');
+
+
+// User sales routes
+Route::get('user/{id}/sales', [UserSalesController::class, 'index'])->name('user.sales');
+// Route::get('user-sales/show/{id}', [UserSalesController::class, 'show'])->name('user.sales.show');
+// Route::get('user-sales/create', [UserSalesController::class, 'create'])->name('user.sales.create');
+// Route::post('user-sales/store', [UserSalesController::class, 'store'])->name('user.sales.store');
+// Route::get('user-sales/edit/{id}', [UserSalesController::class, 'edit'])->name('user.sales.edit');
+// Route::post('user-sales/update/{id}', [UserSalesController::class, 'update'])->name('user.sales.update');
+// Route::get('user-sales/delete/{id}', [UserSalesController::class, 'destroy'])->name('user.sales.delete');
 
 
 });

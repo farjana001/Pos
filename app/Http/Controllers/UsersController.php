@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         $users = User::orderBy('id', 'desc')->get();
 
-        return view('users.users', compact('users'));
+        return view('users.user-list', compact('users'));
     }
 
     /**
@@ -57,9 +57,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $users = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return view('users.show', compact('users'));
+        return view('users.show-users', compact('user'));
     }
 
     /**

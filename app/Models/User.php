@@ -17,4 +17,17 @@ class User extends Model
     public function sales() {
         return $this->hasMany(SaleInvoice::class);
     }
+
+    public function purchases() {
+        return $this->hasMany(PurchaseInvoice::class);
+    }
+
+
+    public function receipts() {
+        return $this->hasMany(Receipt::class);
+    }
+
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
 }

@@ -9,7 +9,4 @@ class SaleInvoice extends Model
 {
     use HasFactory;
     protected $table = 'sale_invoices';
-    // public function user() {
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
 }

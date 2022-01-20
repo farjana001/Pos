@@ -30,13 +30,11 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link {{ request()->routeIs('users.show') ? 'active' : '' }}"
-                            href="{{ route('users.show', $user->id) }}">User Info</a>
-                        <a class="nav-link {{ request()->routeIs('user.sales') ? 'active' : '' }}"
-                            href="{{ route('user.sales', $user->id) }}">Sales</a>
-                        <a class="nav-link" href="#">Purchase</a>
-                        <a class="nav-link" href="#">Payments</a>
-                        <a class="nav-link" href="#">Reciepts</a>
+                        <a class="nav-link {{ request()->routeIs('users.show') ? 'active' : '' }}" href="{{ route('users.show', $user->id) }}">User Info</a>
+                        <a class="nav-link {{ request()->routeIs('user.sales') ? 'active' : '' }}" href="{{ route('user.sales', $user->id) }}">Sales</a>
+                        <a class="nav-link {{ request()->routeIs('user.purchases') ? 'active' : '' }}" href="{{ route('user.purchases', $user->id) }}">Purchase</a>
+                        <a class="nav-link {{ request()->routeIs('user.payments') ? 'active' : '' }}" href="{{ route('user.payments', $user->id) }}">Payments</a>
+                        <a class="nav-link {{ request()->routeIs('user.receipts') ? 'active' : '' }}" href="{{ route('user.receipts', $user->id) }}">Reciepts</a>
                     </div>
                 </div>
                 <div class="col-md-10">

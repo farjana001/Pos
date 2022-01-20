@@ -7,6 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserGroupsController;
+use App\Http\Controllers\UserPaymentsController;
+use App\Http\Controllers\UserPurchasesController;
+use App\Http\Controllers\UserReceiptsController;
 use App\Http\Controllers\UserSalesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -79,12 +82,9 @@ Route::get('products/delete/{id}', [ProductsController::class, 'destroy'])->name
 
 // User sales routes
 Route::get('user/{id}/sales', [UserSalesController::class, 'index'])->name('user.sales');
-// Route::get('user-sales/show/{id}', [UserSalesController::class, 'show'])->name('user.sales.show');
-// Route::get('user-sales/create', [UserSalesController::class, 'create'])->name('user.sales.create');
-// Route::post('user-sales/store', [UserSalesController::class, 'store'])->name('user.sales.store');
-// Route::get('user-sales/edit/{id}', [UserSalesController::class, 'edit'])->name('user.sales.edit');
-// Route::post('user-sales/update/{id}', [UserSalesController::class, 'update'])->name('user.sales.update');
-// Route::get('user-sales/delete/{id}', [UserSalesController::class, 'destroy'])->name('user.sales.delete');
+Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->name('user.purchases');
+Route::get('user/{id}/receipts', [UserReceiptsController::class, 'index'])->name('user.receipts');
+Route::get('user/{id}/payments', [UserPaymentsController::class, 'index'])->name('user.payments');
 
 
 });

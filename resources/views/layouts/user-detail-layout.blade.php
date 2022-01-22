@@ -7,13 +7,10 @@
                     class="fas fa-angle-double-left"></i>&nbsp; Back</a>
         </div>
         <div>
-            <a href="{{ route('users.create') }}" class="btn border-2 border-primary font-semibold text-primary">Add
-                Sale</a>
-            <a href="{{ route('users.create') }}" class="btn border-2 border-info font-semibold text-info">Add Purchase</a>
-            <a href="{{ route('users.create') }}" class="btn border-2 border-warning font-semibold text-warning">Add
-                Payment</a>
-            <a href="{{ route('users.create') }}" class="btn border-2 border-danger font-semibold text-danger">Add
-                Receipt</a>
+            <button type="button" class="btn border-2 border-primary font-semibold text-primary" data-toggle="modal" data-target="#salesModal">Add Sale</button>
+            <button type="button" class="btn border-2 border-info font-semibold text-info" data-toggle="modal" data-target="#purchaseModal">Add Purchase</button>
+            <button type="button" class="btn border-2 border-warning font-semibold text-warning" data-toggle="modal" data-target="#paymentModal">Add Payment</button>
+            <button type="button" class="btn border-2 border-danger font-semibold text-danger" data-toggle="modal" data-target="#receiptModal">Add Receipt</button>
         </div>
 
     </div>

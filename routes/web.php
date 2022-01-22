@@ -85,6 +85,8 @@ Route::get('user/{id}/sales', [UserSalesController::class, 'index'])->name('user
 Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->name('user.purchases');
 Route::get('user/{id}/receipts', [UserReceiptsController::class, 'index'])->name('user.receipts');
 Route::get('user/{id}/payments', [UserPaymentsController::class, 'index'])->name('user.payments');
+Route::post('user/{id}/payments/store', [UserPaymentsController::class, 'store'])->name('user.payments.store');
+Route::get('user/{id}/payments/{payment_id}', [UserPaymentsController::class, 'destroy'])->name('user.payments.delete');
 
 
 });

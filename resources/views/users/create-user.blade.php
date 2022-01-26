@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <label style="color: black;" for="name">Address:</label>
-                <textarea type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" rows="6" placeholder="Enter address"></textarea>
+                <textarea type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" rows="3" placeholder="Enter address"></textarea>
             </div>
 
 

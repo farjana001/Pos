@@ -22,19 +22,20 @@
                             <th class="text-center">Customer Name</th>
                             <th class="text-center">Challan No</th>
                             <th class="text-center">Unit Price</th>
-                            <th class="text-center pr-5">Total Price</th>
-                            <th class="text-right pr-5">Action</th>
+                            <th class="text-center">Total Price</th>
+                            <th class="text-right">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         @foreach ($user->sales as $sale)
+                        {{-- {{ dd($sale) }} --}}
                         <tr>
                             <td class="text-center">{{ $sale->date }}</td>
                             <td class="text-center">{{ $user->name }}</td>
                             <td class="text-center">{{ $sale->challan_no }}</td>
                             <td class="text-center">200</td>
-                            <td class="text-center">300</td>
+                            <td class="text-center">400</td>
                             <td class="text-right pr-4">
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i
                                         class="far fa-edit"></i></a>

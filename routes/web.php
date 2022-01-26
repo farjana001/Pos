@@ -83,7 +83,13 @@ Route::get('products/delete/{id}', [ProductsController::class, 'destroy'])->name
 // User sales routes
 Route::get('user/{id}/sales', [UserSalesController::class, 'index'])->name('user.sales');
 Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->name('user.purchases');
+
+//User Receipts
 Route::get('user/{id}/receipts', [UserReceiptsController::class, 'index'])->name('user.receipts');
+Route::post('user/{id}/receipts/store', [UserReceiptsController::class, 'store'])->name('user.receipts.store');
+Route::get('user/{id}/receipts/{receipt_id}', [UserReceiptsController::class, 'destroy'])->name('user.receipts.delete');
+
+// User Payments
 Route::get('user/{id}/payments', [UserPaymentsController::class, 'index'])->name('user.payments');
 Route::post('user/{id}/payments/store', [UserPaymentsController::class, 'store'])->name('user.payments.store');
 Route::get('user/{id}/payments/{payment_id}', [UserPaymentsController::class, 'destroy'])->name('user.payments.delete');

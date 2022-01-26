@@ -1,4 +1,27 @@
-.css
-{
-    color: red;
+.main-banner {
+    background-image: url('https://cdn.pixabay.com/photo/2021/01/30/01/29/currency-5962599_640.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: rgba(190, 114, 177, 0.3);
+    background-blend-mode: lighten;
+    height: 100vh;
+}
+.user-card {
+    background-color: #f7fbfc;
+    box-shadow: rgba(128, 138, 145, 0.3) 0px 1px 2px 0px, rgba(112, 119, 124, 0.15) 0px 2px 6px 2px;
+}
+
+.bg-custom-login-image {
+    background-image: url('https://cdn.pixabay.com/photo/2019/12/16/10/30/iphone-4699057_960_720.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+.register-image {
+    background-image: url('https://cdn.pixabay.com/photo/2017/05/15/13/56/sign-up-2314914_640.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
 }

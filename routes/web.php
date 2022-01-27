@@ -41,7 +41,7 @@ Route::post('register/user', [RegistrationController::class, 'registerUser'])->n
 
 Route::group(['middleware' => 'auth'], function(){
 
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get('logout', [LoginController::class, 'logOut'])->name('logout');
 
@@ -82,6 +82,11 @@ Route::get('products/delete/{id}', [ProductsController::class, 'destroy'])->name
 
 // User sales routes
 Route::get('user/{id}/sales', [UserSalesController::class, 'index'])->name('user.sales');
+Route::post('user/{id}/invoice', [UserSalesController::class, 'createInvoice'])->name('user.sales.invoice.store');
+
+// Sales Invoices
+// Route::get('user/{id}/invoice/{invoice_id}', [SalesInvoiceController::class, 'index'])->name('user.sales.invoice.show');
+
 Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->name('user.purchases');
 
 //User Receipts

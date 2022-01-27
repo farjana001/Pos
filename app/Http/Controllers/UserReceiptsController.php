@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Receipt;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserReceiptsController extends Controller
 {
@@ -23,6 +24,7 @@ class UserReceiptsController extends Controller
             'note' => 'nullable',
         ]);
         $request['user_id'] = $user_id;
+        $request['admin_id'] = Auth::id();
 
         $receipt = new Receipt();
 
@@ -30,6 +32,7 @@ class UserReceiptsController extends Controller
         $receipt->amount    = $request->amount;
         $receipt->note    = $request->note;
         $receipt->user_id = $request['user_id'];
+        $receipt->admin_id = $request['admin_id'];
 
         $receipt->save();
 

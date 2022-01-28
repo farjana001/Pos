@@ -19,54 +19,82 @@
                     <thead>
                         <tr>
                             <th class="text-center pr-5">Date</th>
-                            <th class="text-center">Customer Name</th>
                             <th class="text-center">Challan No</th>
-                            <th class="text-center">Unit Price</th>
+                            <th class="text-center">Items</th>
                             <th class="text-center">Total Price</th>
                             <th class="text-right">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
+                        <?php
+                            $itemTotal = 0;
+                            $priceTotal = 0;
+                        ?>
+
                         @foreach ($user->sales as $sale)
-                        {{-- {{ dd($sale) }} --}}
+                        {{-- {{ dd($sale->items()) }} --}}
                         <tr>
                             <td class="text-center">{{ $sale->date }}</td>
-                            <td class="text-center">{{ $user->name }}</td>
                             <td class="text-center">{{ $sale->challan_no }}</td>
-                            <td class="text-center">200</td>
-                            <td class="text-center">400</td>
+                            <td class="text-center">
+                                <?php
+                                    $itemQuantity = $sale->items()->sum('quantity');
+                                    $itemTotal += $itemQuantity;
+                                    echo $itemQuantity;
+                                ?>
+                            </td>
+                            <td class="text-right">
+                                <?php
+                                    $itemPrice = $sale->items()->sum('total');
+                                    $priceTotal += $itemPrice;
+                                    echo $itemPrice;
+                                ?>
+                            </td>
                             <td class="text-right pr-4">
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i
-                                        class="far fa-edit"></i></a>
-                                <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger"><i
-                                        class="far fa-trash-alt"></i></a>
+                                <a href="{{ route('user.sales.invoice.show', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
+                                @if ($itemQuantity == 0)
+                                <a href="{{ route('user.sales.invoice.delete', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-danger"><i
+                                    class="far fa-trash-alt"></i></a>
+
+                                @else
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteBtn">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteBtn" tabindex="-1" role="dialog" aria-labelledby="deleteBtnlLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteBtnlLabel"></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                           <div class="text-center px-3">
+                                               <p class="mb-0">If you want to delete the sale invoice item you have to delete the items quantity first</p>
+                                           </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <th colspan="2" class=""></th>
+                        <th class="text-center">Total = {{ $itemTotal }}</th>
+                        <th class="text-right">Total = {{ $priceTotal }}</th>
+                        <th class="text-right"></th>
+                    </tfoot>
                 </table>
             </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="salesModal" tabindex="-1" role="dialog" aria-labelledby="salesModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="salesModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
-        </div>
         </div>
     </div>
 @endsection

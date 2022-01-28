@@ -83,9 +83,11 @@ Route::get('products/delete/{id}', [ProductsController::class, 'destroy'])->name
 // User sales routes
 Route::get('user/{id}/sales', [UserSalesController::class, 'index'])->name('user.sales');
 Route::post('user/{id}/invoice', [UserSalesController::class, 'createInvoice'])->name('user.sales.invoice.store');
+Route::get('user/{id}/invoice/{invoice_id}/show', [UserSalesController::class, 'showInvoice'])->name('user.sales.invoice.show');
+Route::post('user/{id}/invoice/{invoice_id}/add-item', [UserSalesController::class, 'addItem'])->name('user.sales.invoice.addItem');
+Route::get('user/{id}/invoice/{invoice_id}/delete/{item_id}', [UserSalesController::class, 'removeItem'])->name('user.sales.invoice.item.delete');
+Route::get('user/{id}/invoice/{invoice_id}', [UserSalesController::class, 'destroy'])->name('user.sales.invoice.delete');
 
-// Sales Invoices
-// Route::get('user/{id}/invoice/{invoice_id}', [SalesInvoiceController::class, 'index'])->name('user.sales.invoice.show');
 
 Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->name('user.purchases');
 

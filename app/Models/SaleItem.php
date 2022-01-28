@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class SaleItem extends Model
 {
     use HasFactory;
+    protected $fillable = ['product_id', 'sale_invoice_id', 'quantity', 'price', 'total'];
+
+    public function invoice(){
+        return $this->belongsTo(SaleInvoice::class);
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
+
 }

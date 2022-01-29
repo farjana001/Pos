@@ -5,6 +5,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h5 class="m-0 font-weight-bold text-primary">Sale Invoice Details</h5>
+            <a href="{{ route('user.sales', $user->id) }}" class="btn border border-secondary text-secondary"><i class="fas fa-angle-double-left"></i>&nbsp; Back</a>
         </div>
         <div class="card-body">
             @if (session('message'))
@@ -48,6 +49,7 @@
                                 <td class="text-center">{{ $item->product->title }}</td>
                                 <td class="text-center">{{ $item->price }}</td>
                                 <td class="text-center">{{ $item->quantity }}</td>
+                                <td class="text-center">{{ $item->quantity }}</td>
                                 <td class="text-right">{{ $item->total }}</td>
                                 <td class="text-right pr-4">
                                     <a href="{{ route('user.sales.invoice.item.delete', ['id' => $user->id, 'invoice_id' => $invoice->id, 'item_id' => $item->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
@@ -57,13 +59,20 @@
                         </tbody>
                         <tfoot>
                             <th colspan="4" class=""></th>
-                            <th class="text-right">Total = {{ $invoice->items->sum('total') }}</th>
+                            <th class="text-right">Total = {{ $totalPayable = $invoice->items->sum('total') }}</th>
                             <th class="text-right"></th>
                         </tfoot>
                     </table>
 
-                    <div class="text-right">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#addProductModal">Add Product</button>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="">
+                            <h6 class="text-primary font-weight-bold mb-1">Paid: {{ $totalPaid = $invoice->receipts->sum('amount') }}</h6>
+                            <h6 class="text-danger font-weight-bold">Due: {{ $totalPayable - $totalPaid }}</h6>
+                        </div>
+                        <div class="">
+                            <button class="btn btn-info" data-toggle="modal" data-target="#addProductModal">Add Product</button>
+                            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#addReceiptModal">Add Receipt</button>
+                        </div>
                     </div>
                        <!-- Add Product Modal -->
                     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
@@ -118,6 +127,57 @@
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" name="total" id="price_total"
                                                         placeholder="Enter price">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-info px-4">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                       <!-- Add Receipt Modal -->
+                    <div class="modal fade" id="addReceiptModal" tabindex="-1" role="dialog" aria-labelledby="addReceiptModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('user.receipts.store', [ 'id' => $user->id, 'invoice_id' => $invoice->id]) }}" method="POST">
+                                    @csrf
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="paymentModalLabel">Add New Receipt</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3" class="col-sm-3 col-form-label">Date<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" class="form-control" id="date" name="date">
+                                                    @error('date')
+                                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="payment_amount" class="col-sm-3 col-form-label">Amount<span class="text-danger">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="amount" id="payment_amount"
+                                                        placeholder="Enter amount">
+                                                        @error('amount')
+                                                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                                        @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="payment_note" class="col-sm-3 col-form-label">Note</label>
+                                                <div class="col-sm-9">
+                                                    <textarea type="text" class="form-control" name="note" id="payment_note" rows="3"
+                                                        placeholder="Enter note if any"></textarea>
                                                 </div>
                                             </div>
                                         </div>

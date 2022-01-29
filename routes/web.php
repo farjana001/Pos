@@ -93,7 +93,7 @@ Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->na
 
 //User Receipts
 Route::get('user/{id}/receipts', [UserReceiptsController::class, 'index'])->name('user.receipts');
-Route::post('user/{id}/receipts/store', [UserReceiptsController::class, 'store'])->name('user.receipts.store');
+Route::post('user/{id}/receipts/store/{invoice_id?}', [UserReceiptsController::class, 'store'])->name('user.receipts.store');
 Route::get('user/{id}/receipts/{receipt_id}', [UserReceiptsController::class, 'destroy'])->name('user.receipts.delete');
 
 // User Payments

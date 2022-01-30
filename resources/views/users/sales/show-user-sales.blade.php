@@ -54,8 +54,7 @@
                             <td class="text-right pr-4">
                                 <a href="{{ route('user.sales.invoice.show', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
                                 @if ($itemQuantity == 0)
-                                <a href="{{ route('user.sales.invoice.delete', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-danger"><i
-                                    class="far fa-trash-alt"></i></a>
+                                <a href="{{ route('user.sales.invoice.delete', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
 
                                 @else
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleteBtn">

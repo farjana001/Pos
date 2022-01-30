@@ -43,7 +43,36 @@
                         <td class="text-right pr-4">
                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
+                            @if ($user->sales()->count() == 0 && $user->purchases()->count() && $user->receipts()->count() && $user->payments()->count())
                             <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                            @else
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteUser">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                             <!-- Modal -->
+                             <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="deleteUserlLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteUserlLabel"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <div class="text-center px-3">
+                                           <p class="mb-0">If you want to delete the user, you have to delete the sales, payment, receipt and purchase first</p>
+                                       </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                            @endif
+
                                 {{-- <button
                                 class="btn btn-danger delete-user-modal"
                                 data-toggle="modal"
@@ -59,7 +88,7 @@
                 </table>
             </div>
             {{-- delete modal --}}
-            {{-- <div class="modal fade" id="deleteUseruserModal" tabindex="-1" role="dialog"
+            {{-- <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">

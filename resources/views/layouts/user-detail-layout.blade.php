@@ -205,6 +205,54 @@
             </div>
         </div>
     </div>
+
+    <!-- Sales Modal -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('user.sales.invoice.store', $user->id) }}" method="POST">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="purchaseModalLabel">Add New Purchase</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label">Date<span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="date" name="date">
+                                    @error('date')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="challan_no" class="col-sm-3 col-form-label">Challan No</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="challan_no" id="challan_no"
+                                        placeholder="Enter challan no">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="payment_note" class="col-sm-3 col-form-label">Note</label>
+                                <div class="col-sm-9">
+                                    <textarea type="text" class="form-control" name="note" id="payment_note" rows="3"
+                                        placeholder="Enter note if any"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info px-4">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
     </div>
 

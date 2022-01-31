@@ -44,9 +44,12 @@ class UserSalesController extends Controller
         $user       = User::findOrFail($user_id);
         $invoice    = SaleInvoice::findOrFail($invoice_id);
         $products    = Product::all();
+        $totalPayable = $invoice->items->sum('total');
+        $totalPaid  = $invoice->receipts->sum('amount');
+        $dueAmount  = $totalPayable - $totalPaid;
 
 
-        return view('users.sales.invoice', compact('invoice', 'user', 'products'));
+        return view('users.sales.invoice', compact('invoice', 'user', 'products', 'totalPayable', 'totalPaid', 'dueAmount'));
     }
 
     public function addItem(Request $request, $user_id, $invoice_id){
@@ -83,7 +86,7 @@ class UserSalesController extends Controller
     }
 
     public function destroy($user_id, $invoice_id) {
-        
+
         $sale_invoice = SaleInvoice::findOrFail($invoice_id);
 
         $sale_invoice->delete();

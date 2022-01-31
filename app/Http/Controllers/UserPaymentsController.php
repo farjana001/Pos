@@ -15,7 +15,7 @@ class UserPaymentsController extends Controller
           return view('users.payments.payments', compact('user'));
       }
 
-    public function store(Request $request, $user_id) {
+    public function store(Request $request, $user_id, $invoice_id = null) {
         // $user   = User::findOrFail($id);
 
         $request->validate([
@@ -36,7 +36,12 @@ class UserPaymentsController extends Controller
 
         $payment->save();
 
-          return redirect()->route('user.payments', ['id' => $user_id])->with('message', 'New payment added successfully');
+        if ($invoice_id) {
+            return redirect()->route('user.purchase.invoice.show', ['id' => $user_id, 'invoice_id' => $invoice_id])->with('message', 'Payment made successfully');
+        } else {
+            return redirect()->route('user.payments', ['id' => $user_id])->with('message', 'Payment made successfully');
+        }
+        //   return redirect()->route('user.payments', ['id' => $user_id])->with('message', 'New payment added successfully');
       }
 
       public function destroy($user_id, $payment_id) {

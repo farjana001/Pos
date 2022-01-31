@@ -14,4 +14,8 @@ class Payment extends Model
     public function admin(){
         return $this->belongsTo(Admin::class);
     }
+
+    public function invoice(){
+        return $this->belongsTo(PurchaseInvoice::class);
+    }
 }

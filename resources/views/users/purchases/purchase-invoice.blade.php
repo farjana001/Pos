@@ -43,16 +43,15 @@
                         <tbody>
 
                             @foreach ($invoice->items as $item)
-                            {{-- {{ dd($sale->id) }} --}}
+                           
                             <tr>
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td class="text-center">{{ $item->product->title }}</td>
                                 <td class="text-center">{{ $item->price }}</td>
                                 <td class="text-center">{{ $item->quantity }}</td>
-                                <td class="text-center">{{ $item->quantity }}</td>
                                 <td class="text-right">{{ $item->total }}</td>
                                 <td class="text-right pr-4">
-                                    <a href="{{ route('user.sales.invoice.item.delete', ['id' => $user->id, 'invoice_id' => $invoice->id, 'item_id' => $item->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                    <a href="{{ route('user.purchase.invoice.item.delete', ['id' => $user->id, 'invoice_id' => $invoice->id, 'item_id' => $item->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -70,19 +69,19 @@
                             <h6 class="text-danger font-weight-bold">Due: {{ $dueAmount }}</h6>
                         </div>
                         <div class="">
-                            <button class="btn btn-info" data-toggle="modal" data-target="#addProductModal">Add Product</button>
-                            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#addReceiptModal">Add Receipt</button>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#addPurchaseProdModal">Add Product</button>
+                            <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#makePayment">Make Payment</button>
                         </div>
                     </div>
                        <!-- Add Product Modal -->
-                    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addPurchaseProdModal" tabindex="-1" role="dialog" aria-labelledby="addPurchaseProdModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('user.sales.invoice.addItem', [ 'id' => $user->id, 'invoice_id' => $invoice->id]) }}" method="POST">
+                                <form action="{{ route('user.purchase.invoice.addItem', [ 'id' => $user->id, 'invoice_id' => $invoice->id]) }}" method="POST">
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+                                            <h5 class="modal-title" id="addPurchaseProdModalLabel">Add New Product</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -140,15 +139,15 @@
                         </div>
                     </div>
 
-                       <!-- Add Receipt Modal -->
-                    <div class="modal fade" id="addReceiptModal" tabindex="-1" role="dialog" aria-labelledby="addReceiptModalLabel" aria-hidden="true">
+                       <!-- Make Payment Modal -->
+                    <div class="modal fade" id="makePayment" tabindex="-1" role="dialog" aria-labelledby="makePaymentLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('user.receipts.store', [ 'id' => $user->id, 'invoice_id' => $invoice->id]) }}" method="POST">
+                                <form action="{{ route('user.payments.store', [ 'id' => $user->id, 'invoice_id' => $invoice->id]) }}" method="POST">
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="paymentModalLabel">Add New Receipt</h5>
+                                            <h5 class="modal-title" id="paymentModalLabel">Make New Payment</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -183,7 +182,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-info px-4">Add</button>
+                                            <button type="submit" class="btn btn-info px-4">Submit</button>
                                         </div>
                                     </div>
                                 </form>

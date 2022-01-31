@@ -4,7 +4,7 @@
 
 
 
-        @if (request()->routeIs('user.sales.invoice.show'))
+        @if (request()->routeIs('user.sales.invoice.show', 'user.purchase.invoice.show'))
 
         @else
         <div class="mb-4 d-flex justify-content-between">
@@ -43,7 +43,13 @@
                         Sales
                         @endif
                         </a>
-                        <a class="nav-link {{ request()->routeIs('user.purchases') ? 'active' : '' }}" href="{{ route('user.purchases', $user->id) }}">Purchase</a>
+                        <a class="nav-link {{ request()->routeIs('user.purchase', 'user.purchase.invoice.show') ? 'active' : '' }}" href="{{ route('user.purchase', $user->id) }}">
+                            @if (request()->routeIs('user.purchase.invoice.show'))
+                            Purchase <span><i class="fas fa-caret-right"></i></span> Invoice
+                            @else
+                            Purchase
+                            @endif
+                        </a>
                         <a class="nav-link {{ request()->routeIs('user.payments') ? 'active' : '' }}" href="{{ route('user.payments', $user->id) }}">Payments</a>
                         <a class="nav-link {{ request()->routeIs('user.receipts') ? 'active' : '' }}" href="{{ route('user.receipts', $user->id) }}">Reciepts</a>
                     </div>
@@ -206,11 +212,11 @@
         </div>
     </div>
 
-    <!-- Sales Modal -->
+    <!-- Purchase Modal -->
     <div class="modal fade" id="purchaseModal" tabindex="-1" role="dialog" aria-labelledby="purchaseModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('user.sales.invoice.store', $user->id) }}" method="POST">
+                <form action="{{ route('user.purchase.invoice.store', $user->id) }}" method="POST">
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">

@@ -44,7 +44,7 @@ class UserReceiptsController extends Controller
         if ($invoice_id) {
             return redirect()->route('user.sales.invoice.show', ['id' => $user_id, 'invoice_id' => $invoice_id])->with('message', 'New Receipt added successfully');
         } else {
-            return redirect()->route('user.receipts', ['id' => $user_id])->with('message', 'New Receipt added successfully');
+            return redirect()->route('users.show', ['id' => $user_id])->with('message', 'New Receipt added successfully');
         }
 
       }

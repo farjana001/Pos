@@ -33,7 +33,6 @@
                         ?>
 
                         @foreach ($user->sales as $sale)
-                        {{-- {{ dd($sale->items()) }} --}}
                         <tr>
                             <td class="text-center">{{ $sale->date }}</td>
                             <td class="text-center">{{ $sale->challan_no }}</td>
@@ -55,7 +54,6 @@
                                 <a href="{{ route('user.sales.invoice.show', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
                                 @if ($itemQuantity == 0)
                                 <a href="{{ route('user.sales.invoice.delete', ['id' => $user->id, 'invoice_id' => $sale->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-
                                 @else
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleteBtn">
                                     <i class="far fa-trash-alt"></i>
@@ -72,7 +70,7 @@
                                         </div>
                                         <div class="modal-body">
                                            <div class="text-center px-3">
-                                               <p class="mb-0">If you want to delete the sale invoice item you have to delete the items quantity first</p>
+                                               <p class="mb-0">If you want to delete the sale invoice you have to delete the items quantity first</p>
                                            </div>
                                         </div>
                                         <div class="modal-footer">

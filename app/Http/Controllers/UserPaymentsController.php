@@ -26,6 +26,10 @@ class UserPaymentsController extends Controller
         $request['user_id'] = $user_id;
         $request['admin_id'] = Auth::id();
 
+        if ($invoice_id) {
+            $request['purchase_invoice_id'] = $invoice_id;
+          }
+
         $payment = new Payment();
 
         $payment->date      = date('Y-m-d H:i:s', strtotime($request->date));
@@ -33,15 +37,15 @@ class UserPaymentsController extends Controller
         $payment->note    = $request->note;
         $payment->user_id = $request['user_id'];
         $payment->admin_id = $request['admin_id'];
+        $payment->purchase_invoice_id = $request['purchase_invoice_id'];
 
         $payment->save();
 
         if ($invoice_id) {
             return redirect()->route('user.purchase.invoice.show', ['id' => $user_id, 'invoice_id' => $invoice_id])->with('message', 'Payment made successfully');
         } else {
-            return redirect()->route('user.payments', ['id' => $user_id])->with('message', 'Payment made successfully');
+            return redirect()->route('users.show', ['id' => $user_id])->with('message', 'Payment made successfully');
         }
-        //   return redirect()->route('user.payments', ['id' => $user_id])->with('message', 'New payment added successfully');
       }
 
       public function destroy($user_id, $payment_id) {

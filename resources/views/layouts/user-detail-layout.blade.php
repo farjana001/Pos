@@ -31,7 +31,8 @@
             </div>
         </div>
 
-        <div class="card-body py-5">
+        <div class="card-body pb-5">
+            @yield('user_card')
             <div class="row">
                 <div class="col-md-2">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">

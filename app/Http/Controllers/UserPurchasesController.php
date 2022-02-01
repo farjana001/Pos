@@ -49,7 +49,6 @@ class UserPurchasesController extends Controller
         // dd($invoice->payments);
         $dueAmount  = $totalPayable - $totalPaid;
 
-
         return view('users.purchases.purchase-invoice', compact('invoice', 'user', 'products', 'totalPayable', 'totalPaid', 'dueAmount'));
     }
 

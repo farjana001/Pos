@@ -54,7 +54,35 @@
                             </td>
                             <td class="text-right pr-4">
                                 <a href="{{ route('user.purchase.invoice.show', ['id' => $user->id, 'invoice_id' => $purchase->id]) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
+
+                                @if ($itemQuantity == 0)
                                 <a href="{{ route('user.purchase.invoice.delete', ['id' => $user->id, 'invoice_id' => $purchase->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                @else
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deletePurchaseBtn">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deletePurchaseBtn" tabindex="-1" role="dialog" aria-labelledby="deletePurchaseBtnlLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deletePurchaseBtnlLabel"></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                           <div class="text-center px-3">
+                                               <p class="mb-0">If you want to delete the purchase invoice you have to delete the items quantity first</p>
+                                           </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

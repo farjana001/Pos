@@ -49,7 +49,6 @@
                                 <td class="text-center">{{ $item->product->title }}</td>
                                 <td class="text-center">{{ $item->price }}</td>
                                 <td class="text-center">{{ $item->quantity }}</td>
-                                <td class="text-center">{{ $item->quantity }}</td>
                                 <td class="text-right">{{ $item->total }}</td>
                                 <td class="text-right pr-4">
                                     <a href="{{ route('user.sales.invoice.item.delete', ['id' => $user->id, 'invoice_id' => $invoice->id, 'item_id' => $item->id]) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>

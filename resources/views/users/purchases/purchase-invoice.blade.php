@@ -43,7 +43,7 @@
                         <tbody>
 
                             @foreach ($invoice->items as $item)
-                           
+
                             <tr>
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td class="text-center">{{ $item->product->title }}</td>

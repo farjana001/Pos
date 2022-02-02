@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\reports\SalesReportsController;
 use App\Http\Controllers\UserGroupsController;
 use App\Http\Controllers\UserPaymentsController;
 use App\Http\Controllers\UserPurchasesController;
@@ -107,8 +108,11 @@ Route::get('user/{id}/payments', [UserPaymentsController::class, 'index'])->name
 Route::post('user/{id}/payments/store/{invoice_id?}', [UserPaymentsController::class, 'store'])->name('user.payments.store');
 Route::get('user/{id}/payments/{payment_id}', [UserPaymentsController::class, 'destroy'])->name('user.payments.delete');
 
-// Stock routes
+// Stock route
 Route::get('product/stock', [ProductStockController::class, 'index'])->name('products.stock');
+
+// Reports route
+Route::get('reports/sales', [SalesReportsController::class, 'index'])->name('sales.reports');
 
 
 });

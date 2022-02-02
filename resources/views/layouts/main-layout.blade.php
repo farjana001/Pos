@@ -91,6 +91,23 @@
                     </div>
                 </div>
             </li>
+
+            {{-- Reports --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Reports</span>
+                </a>
+                <div id="collapseReports" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('sales.reports') }}">Sales</a>
+                        <a class="collapse-item" href="{{ route('products.index') }}">Purchases</a>
+                        <a class="collapse-item" href="{{ route('products.stock') }}">Payments</a>
+                        <a class="collapse-item" href="{{ route('products.stock') }}">Receipts</a>
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

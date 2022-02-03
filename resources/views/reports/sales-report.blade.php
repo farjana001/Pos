@@ -8,16 +8,17 @@
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Sale Reports</h6>
             <div class="">
-                <form>
+                <form action="{{ route('sales.reports') }}" method="GET">
+                    @csrf
                     <div class="form-row align-items-center">
                       <div class="col-auto">
                         <label class="sr-only" for="inlineFormInput">Start Date</label>
-                        <input type="date" class="form-control mb-2" id="inlineFormInput" name="start_date">
+                        <input type="date" class="form-control mb-2" id="inlineFormInput" name="start_date" value="{{ $start_date }}">
                       </div>
                       <div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">End Date</label>
                         <div class="input-group mb-2">
-                          <input type="date" class="form-control" id="inlineFormInputGroup" name="end_date">
+                          <input type="date" class="form-control" id="inlineFormInputGroup" name="end_date" value="{{ $end_date }}">
                         </div>
                       </div>
                       <div class="col-auto">
@@ -42,6 +43,7 @@
                     </thead>
                     <tbody>
                        @foreach ($sales as $sale)
+                       {{-- {{ dd($sale) }} --}}
                        <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td class="text-center">{{ $sale->title }}</td>

@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\reports\SalesReportsController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserGroupsController;
 use App\Http\Controllers\UserPaymentsController;
 use App\Http\Controllers\UserPurchasesController;
@@ -83,36 +83,39 @@ Route::get('products/delete/{id}',          [ProductsController::class, 'destroy
 
 
 // User sales routes
-Route::get('user/{id}/sales',                           [UserSalesController::class, 'index'])->name('user.sales');
-Route::post('user/{id}/invoice',                        [UserSalesController::class, 'createInvoice'])->name('user.sales.invoice.store');
-Route::get('user/{id}/invoice/{invoice_id}/show',       [UserSalesController::class, 'showInvoice'])->name('user.sales.invoice.show');
-Route::post('user/{id}/invoice/{invoice_id}/add-item',  [UserSalesController::class, 'addItem'])->name('user.sales.invoice.addItem');
-Route::get('user/{id}/invoice/{invoice_id}/delete/{item_id}', [UserSalesController::class, 'removeItem'])->name('user.sales.invoice.item.delete');
-Route::get('user/{id}/invoice/{invoice_id}', [UserSalesController::class, 'destroy'])->name('user.sales.invoice.delete');
+Route::get('user/{id}/sales',                                       [UserSalesController::class, 'index'])->name('user.sales');
+Route::post('user/{id}/invoice',                                    [UserSalesController::class, 'createInvoice'])->name('user.sales.invoice.store');
+Route::get('user/{id}/invoice/{invoice_id}/show',                   [UserSalesController::class, 'showInvoice'])->name('user.sales.invoice.show');
+Route::post('user/{id}/invoice/{invoice_id}/add-item',              [UserSalesController::class, 'addItem'])->name('user.sales.invoice.addItem');
+Route::get('user/{id}/invoice/{invoice_id}/delete/{item_id}',       [UserSalesController::class, 'removeItem'])->name('user.sales.invoice.item.delete');
+Route::get('user/{id}/invoice/{invoice_id}',                        [UserSalesController::class, 'destroy'])->name('user.sales.invoice.delete');
 
 // User Purchases routes
-Route::get('user/{id}/purchases', [UserPurchasesController::class, 'index'])->name('user.purchase');
-Route::post('user/{id}/purchase', [UserPurchasesController::class, 'createInvoice'])->name('user.purchase.invoice.store');
-Route::get('user/{id}/purchase/{invoice_id}/show', [UserPurchasesController::class, 'showInvoice'])->name('user.purchase.invoice.show');
-Route::post('user/{id}/purchase/{invoice_id}/add-item', [UserPurchasesController::class, 'addItem'])->name('user.purchase.invoice.addItem');
-Route::get('user/{id}/purchase/{invoice_id}/delete/{item_id}', [UserPurchasesController::class, 'removeItem'])->name('user.purchase.invoice.item.delete');
-Route::get('user/{id}/purchase/{invoice_id}', [UserPurchasesController::class, 'destroy'])->name('user.purchase.invoice.delete');
+Route::get('user/{id}/purchases',                                   [UserPurchasesController::class, 'index'])->name('user.purchase');
+Route::post('user/{id}/purchase',                                   [UserPurchasesController::class, 'createInvoice'])->name('user.purchase.invoice.store');
+Route::get('user/{id}/purchase/{invoice_id}/show',                  [UserPurchasesController::class, 'showInvoice'])->name('user.purchase.invoice.show');
+Route::post('user/{id}/purchase/{invoice_id}/add-item',             [UserPurchasesController::class, 'addItem'])->name('user.purchase.invoice.addItem');
+Route::get('user/{id}/purchase/{invoice_id}/delete/{item_id}',      [UserPurchasesController::class, 'removeItem'])->name('user.purchase.invoice.item.delete');
+Route::get('user/{id}/purchase/{invoice_id}',                       [UserPurchasesController::class, 'destroy'])->name('user.purchase.invoice.delete');
 
 //User Receipts
-Route::get('user/{id}/receipts', [UserReceiptsController::class, 'index'])->name('user.receipts');
-Route::post('user/{id}/receipts/store/{invoice_id?}', [UserReceiptsController::class, 'store'])->name('user.receipts.store');
-Route::get('user/{id}/receipts/{receipt_id}', [UserReceiptsController::class, 'destroy'])->name('user.receipts.delete');
+Route::get('user/{id}/receipts',                                    [UserReceiptsController::class, 'index'])->name('user.receipts');
+Route::post('user/{id}/receipts/store/{invoice_id?}',               [UserReceiptsController::class, 'store'])->name('user.receipts.store');
+Route::get('user/{id}/receipts/{receipt_id}',                       [UserReceiptsController::class, 'destroy'])->name('user.receipts.delete');
 
 // User Payments
-Route::get('user/{id}/payments', [UserPaymentsController::class, 'index'])->name('user.payments');
-Route::post('user/{id}/payments/store/{invoice_id?}', [UserPaymentsController::class, 'store'])->name('user.payments.store');
-Route::get('user/{id}/payments/{payment_id}', [UserPaymentsController::class, 'destroy'])->name('user.payments.delete');
+Route::get('user/{id}/payments',                                    [UserPaymentsController::class, 'index'])->name('user.payments');
+Route::post('user/{id}/payments/store/{invoice_id?}',               [UserPaymentsController::class, 'store'])->name('user.payments.store');
+Route::get('user/{id}/payments/{payment_id}',                       [UserPaymentsController::class, 'destroy'])->name('user.payments.delete');
 
 // Stock route
-Route::get('product/stock', [ProductStockController::class, 'index'])->name('products.stock');
+Route::get('product/stock',                                         [ProductStockController::class, 'index'])->name('products.stock');
 
 // Reports route
-Route::get('reports/sales', [SalesReportsController::class, 'index'])->name('sales.reports');
+Route::get('reports/sales',                                         [ReportsController::class, 'salesReport'])->name('sales.reports');
+Route::get('reports/purchases',                                     [ReportsController::class, 'purchasesReport'])->name('purchases.reports');
+Route::get('reports/payments',                                      [ReportsController::class, 'paymentsReport'])->name('payments.reports');
+Route::get('reports/receipts',                                      [ReportsController::class, 'receiptsReport'])->name('receipts.reports');
 
 
 });

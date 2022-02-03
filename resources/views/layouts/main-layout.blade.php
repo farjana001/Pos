@@ -102,9 +102,9 @@
                 <div id="collapseReports" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('sales.reports') }}">Sales</a>
-                        <a class="collapse-item" href="{{ route('products.index') }}">Purchases</a>
-                        <a class="collapse-item" href="{{ route('products.stock') }}">Payments</a>
-                        <a class="collapse-item" href="{{ route('products.stock') }}">Receipts</a>
+                        <a class="collapse-item" href="{{ route('purchases.reports') }}">Purchases</a>
+                        <a class="collapse-item" href="{{ route('payments.reports') }}">Payments</a>
+                        <a class="collapse-item" href="{{ route('receipts.reports') }}">Receipts</a>
                     </div>
                 </div>
             </li>

@@ -48,12 +48,12 @@ Route::get('dashboard',                     [DashboardController::class, 'dashbo
 Route::get('logout',                        [LoginController::class, 'logOut'])->name('logout');
 
 // Group Routes
-Route::get('groups',                        [UserGroupsController::class, 'index'])->name('index.user.group');
-Route::get('create-group',                  [UserGroupsController::class, 'create'])->name('create.user.group');
-Route::post('create-group',                 [UserGroupsController::class, 'store'])->name('store.user.group');
-Route::get('group/edit/{id}',               [UserGroupsController::class, 'edit'])->name('edit.user.group');
-Route::post('group/update/{id}',            [UserGroupsController::class, 'update'])->name('update.user.group');
-Route::get('group/delete/{id}',             [UserGroupsController::class, 'destroy'])->name('destroy.user.group');
+Route::get('users/groups',                        [UserGroupsController::class, 'index'])->name('index.user.group');
+Route::get('users/create-group',                  [UserGroupsController::class, 'create'])->name('create.user.group');
+Route::post('users/create-group',                 [UserGroupsController::class, 'store'])->name('store.user.group');
+Route::get('users/group/edit/{id}',               [UserGroupsController::class, 'edit'])->name('edit.user.group');
+Route::post('users/group/update/{id}',            [UserGroupsController::class, 'update'])->name('update.user.group');
+Route::get('users/group/delete/{id}',             [UserGroupsController::class, 'destroy'])->name('destroy.user.group');
 
 // User Routes
 Route::get('users',                         [UsersController::class, 'index'])->name('users.index');
@@ -65,12 +65,12 @@ Route::post('users/update/{id}',            [UsersController::class, 'update'])-
 Route::get('users/delete/{id}',             [UsersController::class, 'destroy'])->name('users.destroy');
 
 // Categories Routes
-Route::get('categories',                    [CategoriesController::class, 'index'])->name('categories.index');
-Route::get('categories/create',             [CategoriesController::class, 'create'])->name('categories.create');
-Route::post('categories/store',             [CategoriesController::class, 'store'])->name('categories.store');
-Route::get('categories/edit/{id}',          [CategoriesController::class, 'edit'])->name('categories.edit');
-Route::post('categories/update/{id}',       [CategoriesController::class, 'update'])->name('categories.update');
-Route::get('categories/delete/{id}',        [CategoriesController::class, 'destroy'])->name('categories.delete');
+Route::get('products/categories',                    [CategoriesController::class, 'index'])->name('categories.index');
+Route::get('products/categories/create',             [CategoriesController::class, 'create'])->name('categories.create');
+Route::post('products/categories/store',             [CategoriesController::class, 'store'])->name('categories.store');
+Route::get('products/categories/edit/{id}',          [CategoriesController::class, 'edit'])->name('categories.edit');
+Route::post('products/categories/update/{id}',       [CategoriesController::class, 'update'])->name('categories.update');
+Route::get('products/categories/delete/{id}',        [CategoriesController::class, 'destroy'])->name('categories.delete');
 
 // Products routes
 Route::get('products',                      [ProductsController::class, 'index'])->name('products.index');
@@ -109,9 +109,10 @@ Route::post('user/{id}/payments/store/{invoice_id?}',               [UserPayment
 Route::get('user/{id}/payments/{payment_id}',                       [UserPaymentsController::class, 'destroy'])->name('user.payments.delete');
 
 // Stock route
-Route::get('product/stock',                                         [ProductStockController::class, 'index'])->name('products.stock');
+Route::get('products/stock',                                         [ProductStockController::class, 'index'])->name('products.stock');
 
 // Reports route
+Route::get('reports/reports-overview',                              [ReportsController::class, 'reportsOverView'])->name('sales.reports.over-view');
 Route::get('reports/sales',                                         [ReportsController::class, 'salesReport'])->name('sales.reports');
 Route::get('reports/purchases',                                     [ReportsController::class, 'purchasesReport'])->name('purchases.reports');
 Route::get('reports/payments',                                      [ReportsController::class, 'paymentsReport'])->name('payments.reports');

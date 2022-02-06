@@ -22,20 +22,6 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        // $credentials = $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required'],
-        // ]);
-
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('dashboard');
-        // }
-
-        // return back()->withErrors([
-        //     'message' => 'The provided credentials do not match our records.',
-        // ]);
         $request->validate([
             'email' => 'required',
             'password' => 'required|min:5',
@@ -46,7 +32,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginId', $user->id);
-                return redirect()->route('dashboard')->with('message', 'You have successfully logged in to the dashboard');
+                return redirect()->route('dashboard');
             }else {
                 return back()->with('fail', 'Password not matches');
             }

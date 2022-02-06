@@ -104,7 +104,7 @@
                                             <div class="form-group row">
                                                 <label for="challan_no" class="col-sm-3 col-form-label">Quantity<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="quantity" id="prod_quantity"
+                                                    <input onkeyup="getTotal()" type="text" class="form-control" name="quantity" id="purchase_prod_quantity"
                                                         placeholder="Enter product quantity">
                                                     @error('quantity')
                                                         <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -114,7 +114,7 @@
                                             <div class="form-group row">
                                                 <label for="challan_no" class="col-sm-3 col-form-label">Unit Price<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="price" id="prod_price"
+                                                    <input onkeyup="getTotal()" type="text" class="form-control" name="price" id="purchase_prod_price"
                                                         placeholder="Enter price">
                                                     @error('price')
                                                         <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -124,7 +124,7 @@
                                             <div class="form-group row">
                                                 <label for="challan_no" class="col-sm-3 col-form-label">Total Price<span class="text-danger">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="total" id="price_total"
+                                                    <input onkeyup="getTotal()" type="text" class="form-control" name="total" id="purchase_price_total"
                                                         placeholder="Enter price">
                                                 </div>
                                             </div>
@@ -193,5 +193,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const getTotal = () => {
+           let saleQuantity = document.getElementById('purchase_prod_quantity').value;
+           let unitSalePrice = document.getElementById('purchase_prod_price').value;
+
+           if(saleQuantity && unitSalePrice) {
+            document.getElementById('purchase_price_total').value = unitSalePrice * saleQuantity
+           }
+
+        }
+    </script>
 @endsection
 

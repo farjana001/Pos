@@ -30,7 +30,6 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -60,18 +59,17 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             {{-- users --}}
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="#collapseUsers">
                     <i class="fas fa-user-friends"></i>
                     <span>Users</span>
                 </a>
-                <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseUsers" class="{{ (Request::segment(1) == 'users' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('groups') }}">Groups</a>
-                        <a class="collapse-item" href="{{ url('users') }}">Users</a>
+                        <a class="collapse-item" href="{{ route('index.user.group') }}">Groups</a>
+                        <a class="collapse-item" href="{{ route('users.index') }}">Users</a>
                     </div>
                 </div>
             </li>
@@ -83,9 +81,9 @@
                     <i class="fas fa-boxes"></i>
                     <span>Products</span>
                 </a>
-                <div id="collapseProducts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseProducts" class="{{ (Request::segment(1) == 'products' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('categories') }}">Categories</a>
+                        <a class="collapse-item" href="{{ route('categories.index') }}">Categories</a>
                         <a class="collapse-item" href="{{ route('products.index') }}">Products</a>
                         <a class="collapse-item" href="{{ route('products.stock') }}">Stocks</a>
                     </div>
@@ -95,12 +93,14 @@
             {{-- Reports --}}
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseThree">
                     <i class="fas fa-file-invoice"></i>
                     <span>Reports</span>
                 </a>
-                <div id="collapseReports" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseReports" class="{{ (Request::segment(1) == 'reports' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingReports" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="{{ route('sales.reports.over-view') }}">Reports Overview</a>
                         <a class="collapse-item" href="{{ route('sales.reports') }}">Sales</a>
                         <a class="collapse-item" href="{{ route('purchases.reports') }}">Purchases</a>
                         <a class="collapse-item" href="{{ route('payments.reports') }}">Payments</a>

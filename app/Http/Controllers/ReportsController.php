@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
@@ -7,9 +6,32 @@ use App\Models\PurchaseItem;
 use App\Models\Receipt;
 use App\Models\SaleItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
+
 {
+    public function reportsOverView(Request $request) {
+        $start_date     =   $request->get('start_date', date('Y-m-d'));
+        $end_date       =   $request->get('end_date', date('Y-m-d'));
+
+
+        $sales          =   SaleItem::select('products.title', DB::raw( 'SUM(sale_items.quantity) as quantity, SUM(sale_items.total) as total') )
+                                    ->join('products', 'sale_items.product_id', '=', 'products.id')
+                                    ->join('sale_invoices', 'sale_items.sale_invoice_id', '=', 'sale_invoices.id')
+                                    ->whereBetween('sale_invoices.date', [$start_date, $end_date])
+                                    ->groupBy('products.title')
+                                    ->get();
+
+        $purchases      =   PurchaseItem::select( 'purchase_items.quantity', 'purchase_items.price', 'purchase_items.total', 'products.title')
+                                    ->join('products', 'purchase_items.product_id', '=', 'products.id')
+                                    ->join('purchase_invoices', 'purchase_items.purchase_invoice_id', '=', 'purchase_invoices.id')
+                                    ->whereBetween('purchase_invoices.date', [$start_date, $end_date])
+                                    ->get();
+
+        return view('reports.reports-overview', compact('sales', 'start_date', 'end_date'));
+    }
+
     public function salesReport(Request $request){
 
         $start_date     =   $request->get('start_date', date('Y-m-d'));

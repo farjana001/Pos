@@ -80,10 +80,6 @@
                 </div>
             </div>
         </div>
-        <!-- Pending Requests Card Example -->
-        <?php
-
-        ?>
         <div class="col-md-3 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">

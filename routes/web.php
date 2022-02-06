@@ -14,6 +14,8 @@ use App\Http\Controllers\UserPurchasesController;
 use App\Http\Controllers\UserReceiptsController;
 use App\Http\Controllers\UserSalesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UsersRecorcdsController;
+use App\Http\Controllers\UsersRecordsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +65,7 @@ Route::post('users/store',                  [UsersController::class, 'store'])->
 Route::get('users/edit/{id}',               [UsersController::class, 'edit'])->name('users.edit');
 Route::post('users/update/{id}',            [UsersController::class, 'update'])->name('users.update');
 Route::get('users/delete/{id}',             [UsersController::class, 'destroy'])->name('users.destroy');
+Route::get('users/records/{id}',            [UsersRecordsController::class, 'index'])->name('users.records');
 
 // Categories Routes
 Route::get('products/categories',                    [CategoriesController::class, 'index'])->name('categories.index');

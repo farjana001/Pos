@@ -69,7 +69,24 @@
                 <div id="collapseUsers" class="{{ (Request::segment(1) == 'users' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('index.user.group') }}">Groups</a>
-                        <a class="collapse-item" href="{{ route('users.index') }}">Users</a>
+                        {{-- <a class="collapse-item" href="{{ route('users.index') }}">Users</a> --}}
+                        <ul class="navbar-nav accordion navbar-sub-nav" id="accordionSubSidebar">
+                            <li class="nav-item">
+                                <a class="sub-nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseUse"
+                                aria-expanded="true" aria-controls="">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-0">Users</p>
+                                        <span style="color:#3a3b45 !important;" class="ml-3 d-block"><i class="fas fa-angle-down"></i></span>
+                                    </div>
+                                </a>
+                                <div id="collapseUse" class="{{ (Request::segment(1) == 'users' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingUse" data-parent="#accordionSubSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <a class="{{ isrequest() }}" href="{{ route('users.index') }}">User Information</a>
+                                        <a class="collapse-item" href="{{ route('users.records') }}">User Records</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </li>

@@ -14,11 +14,18 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function records()
     {
         $users = User::orderBy('id', 'desc')->get();
 
         return view('users.user-list', compact('users'));
+    }
+
+    public function index()
+    {
+        $users = User::orderBy('id', 'desc')->get();
+
+        return view('users.user-information', compact('users'));
     }
 
     /**

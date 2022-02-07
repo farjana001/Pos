@@ -25,3 +25,23 @@
     background-position: center center;
     background-size: contain;
 }
+
+.navbar-sub-nav {
+    /* margin-left: 24px; */
+}
+
+.sub-nav-link {
+    color: #3a3b45;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    display: block;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    white-space: nowrap;
+}
+
+.sub-nav-link:hover {
+    color: #3a3b45;
+    text-decoration: none;
+    background-color: #eaecf4;
+}

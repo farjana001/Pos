@@ -59,13 +59,14 @@ Route::get('users/group/delete/{id}',             [UserGroupsController::class, 
 
 // User Routes
 Route::get('users',                         [UsersController::class, 'index'])->name('users.index');
+Route::get('users/records',                 [UsersController::class, 'records'])->name('users.records');
 Route::get('users/show/{id}',               [UsersController::class, 'show'])->name('users.show');
 Route::get('users/create',                  [UsersController::class, 'create'])->name('users.create');
 Route::post('users/store',                  [UsersController::class, 'store'])->name('users.store');
 Route::get('users/edit/{id}',               [UsersController::class, 'edit'])->name('users.edit');
 Route::post('users/update/{id}',            [UsersController::class, 'update'])->name('users.update');
 Route::get('users/delete/{id}',             [UsersController::class, 'destroy'])->name('users.destroy');
-Route::get('users/records/{id}',            [UsersRecordsController::class, 'index'])->name('users.records');
+
 
 // Categories Routes
 Route::get('products/categories',                    [CategoriesController::class, 'index'])->name('categories.index');

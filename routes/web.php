@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserGroupsController;
 use App\Http\Controllers\UserPaymentsController;
 use App\Http\Controllers\UserPurchasesController;
@@ -58,10 +59,10 @@ Route::post('users/group/update/{id}',            [UserGroupsController::class, 
 Route::get('users/group/delete/{id}',             [UserGroupsController::class, 'destroy'])->name('destroy.user.group');
 
 // User Routes
-Route::get('users',                         [UsersController::class, 'index'])->name('users.index');
-Route::get('users/records',                 [UsersController::class, 'records'])->name('users.records');
+Route::get('users/details',                 [UsersController::class, 'index'])->name('users.index');
+Route::get('users/details/records',         [UsersController::class, 'records'])->name('users.records');
 Route::get('users/show/{id}',               [UsersController::class, 'show'])->name('users.show');
-Route::get('users/create',                  [UsersController::class, 'create'])->name('users.create');
+Route::get('users/details/create',          [UsersController::class, 'create'])->name('users.create');
 Route::post('users/store',                  [UsersController::class, 'store'])->name('users.store');
 Route::get('users/edit/{id}',               [UsersController::class, 'edit'])->name('users.edit');
 Route::post('users/update/{id}',            [UsersController::class, 'update'])->name('users.update');
@@ -121,6 +122,10 @@ Route::get('reports/sales',                                         [ReportsCont
 Route::get('reports/purchases',                                     [ReportsController::class, 'purchasesReport'])->name('purchases.reports');
 Route::get('reports/payments',                                      [ReportsController::class, 'paymentsReport'])->name('payments.reports');
 Route::get('reports/receipts',                                      [ReportsController::class, 'receiptsReport'])->name('receipts.reports');
+
+
+// search routes
+Route::get('users/details/search',          [SearchController::class, 'searchUser'])->name('users.search');
 
 
 });

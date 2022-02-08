@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         $users = User::orderBy('id', 'desc')->get();
 
-        return view('users.user-list', compact('users'));
+        return view('users.user-records', compact('users'));
     }
 
     public function index()
@@ -126,4 +126,12 @@ class UsersController extends Controller
         return redirect()->route('users.index')->with('message', 'User removed successfully');
 
     }
+
+    // public function searchUser(Request $request)
+    // {
+    //     $search_text = $request->get('query');
+    //     $users = User::where('name', 'LIKE', '%'.$search_text.'%')->with('group')->get();
+
+    //     return view('users.user-information', compact('users'));
+    // }
 }

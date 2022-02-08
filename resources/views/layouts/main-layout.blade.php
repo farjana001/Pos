@@ -68,21 +68,22 @@
                 </a>
                 <div id="collapseUsers" class="{{ (Request::segment(1) == 'users' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('index.user.group') }}">Groups</a>
+                        <a class="collapse-item {{ (Request::segment(2) == 'groups' ? 'active-menu active' : '') }}" href="{{ route('index.user.group') }}">Groups</a>
                         {{-- <a class="collapse-item" href="{{ route('users.index') }}">Users</a> --}}
                         <ul class="navbar-nav accordion navbar-sub-nav" id="accordionSubSidebar">
                             <li class="nav-item">
-                                <a class="sub-nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseUse"
+                                <a class="sub-nav-link collapsed  {{ (Request::segment(2) == 'details' ? 'active-menu' : '') }}" href="#" data-toggle="collapse" data-target="#collapseUse"
                                 aria-expanded="true" aria-controls="">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center ">
                                         <p class="mb-0">Users</p>
                                         <span style="color:#3a3b45 !important;" class="ml-3 d-block"><i class="fas fa-angle-down"></i></span>
                                     </div>
                                 </a>
-                                <div id="collapseUse" class="{{ (Request::segment(1) == 'users' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingUse" data-parent="#accordionSubSidebar">
+                                <div id="collapseUse" class="collapse {{ (Request::segment(2) == 'details' ? 'show' : '') }}" aria-labelledby="headingUse" data-parent="#accordionSubSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
-                                        <a class="{{ isrequest() }}" href="{{ route('users.index') }}">User Information</a>
-                                        <a class="collapse-item" href="{{ route('users.records') }}">User Records</a>
+                                        <a class="collapse-item {{ request()->routeIs('users.create') ? 'active' : '' }}" href="{{ route('users.create') }}">Add User</a>
+                                        <a class="collapse-item {{ request()->routeIs('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">User Information</a>
+                                        <a class="collapse-item {{ request()->routeIs('users.records') ? 'active' : '' }}" href="{{ route('users.records') }}">User Records</a>
                                     </div>
                                 </div>
                             </li>
@@ -100,9 +101,9 @@
                 </a>
                 <div id="collapseProducts" class="{{ (Request::segment(1) == 'products' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('categories.index') }}">Categories</a>
-                        <a class="collapse-item" href="{{ route('products.index') }}">Products</a>
-                        <a class="collapse-item" href="{{ route('products.stock') }}">Stocks</a>
+                        <a class="collapse-item  {{ request()->routeIs('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">Categories</a>
+                        <a class="collapse-item  {{ request()->routeIs('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">Products</a>
+                        <a class="collapse-item  {{ request()->routeIs('products.stock') ? 'active' : '' }}" href="{{ route('products.stock') }}">Stocks</a>
                     </div>
                 </div>
             </li>
@@ -117,11 +118,11 @@
                 <div id="collapseReports" class="{{ (Request::segment(1) == 'reports' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingReports" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="{{ route('sales.reports.over-view') }}">Reports Overview</a>
-                        <a class="collapse-item" href="{{ route('sales.reports') }}">Sales</a>
-                        <a class="collapse-item" href="{{ route('purchases.reports') }}">Purchases</a>
-                        <a class="collapse-item" href="{{ route('payments.reports') }}">Payments</a>
-                        <a class="collapse-item" href="{{ route('receipts.reports') }}">Receipts</a>
+                        <a class="collapse-item  {{ request()->routeIs('sales.reports.over-view') ? 'active' : '' }}" href="{{ route('sales.reports.over-view') }}">Reports Overview</a>
+                        <a class="collapse-item  {{ request()->routeIs('sales.reports') ? 'active' : '' }}" href="{{ route('sales.reports') }}">Sales</a>
+                        <a class="collapse-item  {{ request()->routeIs('purchases.reports') ? 'active' : '' }}" href="{{ route('purchases.reports') }}">Purchases</a>
+                        <a class="collapse-item  {{ request()->routeIs('payments.reports') ? 'active' : '' }}" href="{{ route('payments.reports') }}">Payments</a>
+                        <a class="collapse-item  {{ request()->routeIs('receipts.reports') ? 'active' : '' }}" href="{{ route('receipts.reports') }}">Receipts</a>
                     </div>
                 </div>
             </li>

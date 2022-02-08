@@ -5,8 +5,28 @@
     <!-- DataTbales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">User list</h6>
-            <a href="{{ route('users.create') }}" class="btn btn-warning font-weight-bold" style="color:black;"><i class="fas fa-plus"></i>&nbsp; Add New</a>
+            <div>
+                <h6 class="m-0 font-weight-bold text-primary">User list</h6>
+            </div>
+            <div class="d-flex">
+                <div class="mr-2">
+                    <form action="{{ route('users.search') }}" method="GET" role="search">
+                        @csrf
+                        <div class="d-flex">
+                            <input class="form-control mr-2" type="search" name="query">
+                            <button class="btn border border-secondary text-success" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form action="{{ route('users.index') }}" method="GET">
+                        @csrf
+                        <div class="d-flex">
+                            <button class="btn border border-secondary text-danger" type="submit"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             @if(session('message'))
@@ -17,7 +37,7 @@
             </div>
             @endif
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Sl No.</th>
@@ -40,9 +60,13 @@
                         <td class="text-center">{{ $user->phone }}</td>
                         <td class="text-center">{{ $user->address }}</td>
                         <td class="text-right pr-4">
-                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-success"><i class="far fa-eye"></i></a>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
-                            @if ($user->sales()->count() == 0 && $user->purchases()->count() && $user->receipts()->count() && $user->payments()->count())
+                            @if (
+                                 $user->sales()->count()        == 0    &&
+                                 $user->purchases()->count()    == 0    &&
+                                 $user->receipts()->count()     == 0    &&
+                                 $user->payments()->count()     == 0
+                                 )
                             <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             @else
                             <button class="btn btn-danger" data-toggle="modal" data-target="#deleteUser">
@@ -71,38 +95,12 @@
                                 </div>
 
                             @endif
-
-                                {{-- <button
-                                class="btn btn-danger delete-user-modal"
-                                data-toggle="modal"
-                                data-target="#deleteUseruserModal"
-                                data-id="{{ $user->id }}"
-                                >
-                                <i class="far fa-trash-alt"></i>
-                                </button> --}}
                         </td>
                     </tr>
                        @endforeach
                     </tbody>
                 </table>
             </div>
-            {{-- delete modal --}}
-            {{-- <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body text-center">
-                            <i class="fas fa-exclamation-circle fa-5x mt-3"></i>
-                            <h3 class="pt-4 mb-2 text-dark">Are you sure?</h3>
-                            <p class="text-secondary">Do you really want to delete this records? This process can't be undone.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <a href="{{ route('destroy.user.user', $user->id) }}" type="submit" id="deleteuserModalHref" class="btn btn-danger">Delete it.</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 

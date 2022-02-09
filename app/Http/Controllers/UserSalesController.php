@@ -20,7 +20,7 @@ class UserSalesController extends Controller
     public function createInvoice(Request $request, $user_id){
         $request->validate([
             'date'          => 'required',
-            'challan_no'    => 'nullable',
+            'challan_no'    => 'nullable|unique:sale_invoices',
             'note'          => 'nullable',
         ]);
 
@@ -41,12 +41,12 @@ class UserSalesController extends Controller
     }
 
     public function showInvoice($user_id, $invoice_id){
-        $user       = User::findOrFail($user_id);
-        $invoice    = SaleInvoice::findOrFail($invoice_id);
-        $products    = Product::all();
-        $totalPayable = $invoice->items->sum('total');
-        $totalPaid  = $invoice->receipts->sum('amount');
-        $dueAmount  = $totalPayable - $totalPaid;
+        $user           =   User::findOrFail($user_id);
+        $invoice        =   SaleInvoice::findOrFail($invoice_id);
+        $products       =   Product::all();
+        $totalPayable   =   $invoice->items->sum('total');
+        $totalPaid      =   $invoice->receipts->sum('amount');
+        $dueAmount      =   $totalPayable - $totalPaid;
 
 
         return view('users.sales.invoice', compact('invoice', 'user', 'products', 'totalPayable', 'totalPaid', 'dueAmount'));

@@ -36,14 +36,13 @@
                                 <th class="text-center">Product</th>
                                 <th class="text-center">Price</th>
                                 <th class="text-center">Quantity</th>
-                                <th class="text-center">Total</th>
+                                <th class="text-right">Total</th>
                                 <th class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @if (($invoice->items->count()) > 0)
                             @foreach ($invoice->items as $item)
-                            {{-- {{ dd($sale->id) }} --}}
                             <tr>
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td class="text-center">{{ $item->product->title }}</td>
@@ -55,6 +54,9 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @else
+                            <tr class="text-center"><td colspan="5">No data to show</td></tr>
+                            @endif
                         </tbody>
                         <tfoot>
                             <th colspan="4" class=""></th>

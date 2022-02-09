@@ -66,20 +66,20 @@
                     <i class="fas fa-user-friends"></i>
                     <span>Users</span>
                 </a>
-                <div id="collapseUsers" class="{{ (Request::segment(1) == 'users' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseUsers" class="{{ (Request::segment(2) == 'details' ? 'collapse show' : 'collapse') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {{ (Request::segment(2) == 'groups' ? 'active-menu active' : '') }}" href="{{ route('index.user.group') }}">Groups</a>
+                        <a class="collapse-item {{ (Request::segment(3) == 'groups' ? 'active-menu active' : '') }}" href="{{ route('index.user.group') }}">Groups</a>
                         {{-- <a class="collapse-item" href="{{ route('users.index') }}">Users</a> --}}
                         <ul class="navbar-nav accordion navbar-sub-nav" id="accordionSubSidebar">
                             <li class="nav-item">
-                                <a class="sub-nav-link collapsed  {{ (Request::segment(2) == 'details' ? 'active-menu' : '') }}" href="#" data-toggle="collapse" data-target="#collapseUse"
+                                <a class="sub-nav-link collapsed  {{ (Request::segment(3) == 'user' ? 'active-menu' : '') }}" href="#" data-toggle="collapse" data-target="#collapseUse"
                                 aria-expanded="true" aria-controls="">
                                     <div class="d-flex justify-content-between align-items-center ">
                                         <p class="mb-0">Users</p>
                                         <span style="color:#3a3b45 !important;" class="ml-3 d-block"><i class="fas fa-angle-down"></i></span>
                                     </div>
                                 </a>
-                                <div id="collapseUse" class="collapse {{ (Request::segment(2) == 'details' ? 'show' : '') }}" aria-labelledby="headingUse" data-parent="#accordionSubSidebar">
+                                <div id="collapseUse" class="collapse {{ (Request::segment(3) == 'user' ? 'show' : '') }}" aria-labelledby="headingUse" data-parent="#accordionSubSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
                                         <a class="collapse-item {{ request()->routeIs('users.create') ? 'active' : '' }}" href="{{ route('users.create') }}">Add User</a>
                                         <a class="collapse-item {{ request()->routeIs('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">User Information</a>

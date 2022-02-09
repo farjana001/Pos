@@ -11,7 +11,7 @@
             </div>
             <div class="d-flex">
                 <div class="mr-2">
-                    <form action="{{ route('users.search') }}" method="GET" role="search">
+                    <form action="{{ route('users.search.records') }}" method="GET" role="search">
                         @csrf
                         <div class="d-flex">
                             <input class="form-control mr-2" type="search" name="query">
@@ -20,7 +20,7 @@
                     </form>
                 </div>
                 <div>
-                    <form action="{{ route('users.index') }}" method="GET">
+                    <form action="{{ route('users.records') }}" method="GET">
                         @csrf
                         <div class="d-flex">
                             <button class="btn border border-secondary text-danger" type="submit"><i class="fas fa-sync-alt"></i></button>

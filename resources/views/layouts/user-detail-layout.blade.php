@@ -193,6 +193,9 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="challan_no" id="challan_no"
                                         placeholder="Enter challan no">
+                                        @error('challan_no')
+                                        <div id="challan_error" class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -205,7 +208,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-info px-4">Add</button>
+                            <button type="submit"  class="btn btn-info px-4">Add</button>
                         </div>
                     </div>
                 </form>
@@ -266,7 +269,10 @@
 @endsection
 
 @section('scripts')
-    <script>
-
-    </script>
+<script>
+    let resumeError = document.getElementById('challan_error');
+    if (resumeError !== null) {
+        document.querySelector('[data-target="#saleModal"]').click();
+    }
+</script>
 @endsection

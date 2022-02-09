@@ -83,6 +83,11 @@
                             </td>
                         </tr>
                         @endforeach
+
+                        {{-- @foreach ($user->receipts as $receipt)
+                        <p>{{ $receipt->amount }}</p>
+
+                        @endforeach --}}
                     </tbody>
                     <tfoot>
                         <th colspan="2" class=""></th>

@@ -10,7 +10,7 @@
             </div>
             <div class="d-flex">
                 <div class="mr-2">
-                    <form action="{{ route('users.search') }}" method="GET" role="search">
+                    <form action="{{ route('users.search.information') }}" method="GET" role="search">
                         @csrf
                         <div class="d-flex">
                             <input class="form-control mr-2" type="search" name="query">
